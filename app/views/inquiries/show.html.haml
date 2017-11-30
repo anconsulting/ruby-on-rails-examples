@@ -1,0 +1,45 @@
+.ui.container.inquiry-space-header
+  %h1.ui.icon.message
+    %i.inbox.icon
+    .content
+      .header
+        アンケート結果
+      %p
+        好きな色は？※複数選択可
+  %h1
+    ー 回答 ー
+  .list-on
+    %ul
+      - if @answer["color_red"] == "1"
+        %li
+          %span
+            赤
+      - if @answer["color_blue"] == "1"
+        %li
+          %span
+            青
+      - if @answer["color_yellow"] == "1"
+        %li
+          %span
+            黄
+      - if @answer["color_green"] == "1"
+        %li
+          %span
+            緑
+      - if @answer["color_orange"] == "1"
+        %li
+          %span
+            オレンジ
+      - if @answer["color_pink"] == "1"
+        %li
+          %span
+            ピンク
+      - if @answer["color_white"] == "1"
+        %li
+          %span
+            白
+      - if @answer["color_black"] == "1"
+        %li
+          %span
+            黒
+
