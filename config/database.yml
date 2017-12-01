@@ -5,21 +5,27 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
   timeout: 5000
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  # docker-entrypoint-initdb.d/create_dbs.sqlのdatabase名と同一
+  database: ruby_on_rails_examples
+  username: root
+  password:
+  # docker-compose.yamlのdatabase名と同一
+  host: ruby-on-rails-examples_db
+  # mysql2のport(3306)
+  port: 3306
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
 
 production:
   <<: *default
-  database: db/production.sqlite3

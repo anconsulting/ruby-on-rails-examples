@@ -1,0 +1,35 @@
+version: '2'
+services:
+  # mysql
+  ruby-on-rails-examples_db:
+    container_name: ruby-on-rails-examples_db
+    image: ruby-on-rails-examples_db
+    build: ./mysql
+    ports:
+      - "3311:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      # `bundle exec rake db:migrate:reset` コマンドにて初期化するが、Schemaだけ `docker-entrypoint-initdb.d"` にて構築
+      - "./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+      - "./mysql/conf.d/:/etc/mysql/conf.d/"
+  ruby-on-rails-examples_app: &ruby-on-rails-examples_app_base
+    container_name: ruby-on-rails-examples_app
+    image: ruby-on-rails-examples_app
+    build: ..
+    command: bin/rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      # ここはアプリ名（ルートディレクトリ名）
+      - ..:/ruby-on-rails-examples
+    ports:
+      - "3011:3000"
+    depends_on:
+      - ruby-on-rails-examples_db
+    stdin_open: true
+    tty: true
+
+volumes:
+  ruby-on-rails-examples_db:
+    driver: local
+  ruby-on-rails-examples_bundle:
+    driver: local

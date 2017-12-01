@@ -1,0 +1,36 @@
+.ui.container.inquiry-space-header
+  %h1.ui.icon.message
+    %i.inbox.icon
+    .content
+      .header
+        アンケート
+      %p
+        好きな色は？※複数選択可
+  = simple_form_for @inquiry, url: inquiries_path do |f|
+    = f.error_notification
+    %ul
+      %li.inquiry-space-list
+        .ui.checkbox
+          = f.input :color_red, as: :boolean, label: "赤"
+      %li.inquiry-space-list
+        .ui.checkbox
+          = f.input :color_blue, as: :boolean, label: "青"
+      %li.inquiry-space-list
+        .ui.checkbox
+          = f.input :color_yellow, as: :boolean, label: "黄"
+      %li.inquiry-space-list
+        .ui.checkbox
+          = f.input :color_green, as: :boolean, label: "緑"
+      %li.inquiry-space-list
+        .ui.checkbox
+          = f.input :color_orange, as: :boolean, label: "オレンジ"
+      %li.inquiry-space-list
+        .ui.checkbox
+          = f.input :color_pink, as: :boolean, label: "ピンク"
+      %li.inquiry-space-list
+        .ui.checkbox
+          = f.input :color_white, as: :boolean, label: "白"
+      %li.inquiry-space-list
+        .ui.checkbox
+          = f.input :color_black, as: :boolean, label: "黒"
+      = f.button :submit, "送信する", class: 'ui primary button', data: {disable_with: "送信中・・・"}
