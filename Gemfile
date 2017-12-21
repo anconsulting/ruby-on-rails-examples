@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# PDF
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -53,10 +57,22 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
-gem 'pry-rails'
-gem 'haml-rails'
-gem 'erb2haml'
-gem 'simple_form'
+############################################################################
+# Add-ON
+############################################################################
+# CSS
 gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
+# jQuery
 gem 'jquery-rails'
+# FORM
+gem 'simple_form'
+# PDF
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+
+group :development do
+  gem 'pry-rails'            # デバッグで利用
+  gem 'better_errors'        # デバッグで利用
+  gem 'binding_of_caller'    # デバッグで利用
+  gem 'pry-byebug'           # デバッグを実施(Ruby 2.0以降で動作する)
+end
