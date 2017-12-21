@@ -2,6 +2,7 @@ FROM ruby:2.4.1
 
 RUN apt-get update -qq \
  && apt-get install -y build-essential libpq-dev nodejs nodejs-legacy \
+ && apt-get install fonts-ipa* \
  && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /ruby-on-rails-examples

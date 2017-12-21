@@ -6,7 +6,7 @@ services:
     image: ruby-on-rails-examples_db
     build: ./mysql
     ports:
-      - "3311:3306"
+      - "3306:3306"
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     volumes:
@@ -22,7 +22,7 @@ services:
       # ここはアプリ名（ルートディレクトリ名）
       - ..:/ruby-on-rails-examples
     ports:
-      - "3011:3000"
+      - "3000:3000"
     depends_on:
       - ruby-on-rails-examples_db
     stdin_open: true
